@@ -36,7 +36,7 @@ export default function SignUp() {
             navi('/login');          
         } catch (error) {
             console.log({ error });
-            showerror(error.response.data.errorMessage);
+            showerror((error as any).response.data.errorMessage);
         }
 
     };
