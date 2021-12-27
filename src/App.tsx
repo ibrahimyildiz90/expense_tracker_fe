@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import { Layout, Menu, Breadcrumb } from 'antd';
+import Login from "./components/Login";
 
 const { Header, Content, Footer } = Layout
 
@@ -19,6 +20,7 @@ function App() {
       <Content className="site-layout" style={{ padding: '50px', marginTop: 64 }}>      
         <Routes>
           <Route path="/register" element={<SignUp />}></Route>
+          <Route path="/login" element={<Login/>}></Route>
         </Routes>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Expense Tracker @iyildiz 2021</Footer>

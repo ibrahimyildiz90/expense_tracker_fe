@@ -1,17 +1,12 @@
-import { Form, Input, Button,message, Space } from "antd";
+import { Form, Input, Button, Space } from "antd";
 import { useNavigate } from "react-router-dom";
+import showError from "../utils/showError";
 
 import api from "../utils/api";
 
-
-const showerror = (errorMessage:string) => {
-    message.error(errorMessage);
-  };
-
-
 export default function SignUp() {
 
-    
+
     const layout = {
         labelCol: { span: 8 },
         wrapperCol: { span: 16 },
@@ -33,10 +28,14 @@ export default function SignUp() {
     const onFinish = async (values: any) => {
         try {
             await api.post('/users/register', values);
-            navi('/login');          
+            navi('/login', {
+                state: {
+                    newSignUp: true,
+                }
+            });
         } catch (error) {
             console.log({ error });
-            showerror((error as any).response.data.errorMessage);
+            showError((error as any).response.data.errorMessage);
         }
 
     };
@@ -48,6 +47,9 @@ export default function SignUp() {
             onFinish={onFinish}
             validateMessages={validateMessages}
         >
+            <h2 style={{ textAlign: "center", marginBottom: 40 }}>
+                Register for an account
+            </h2>
             <Form.Item
                 name="username"
                 label="Username"
